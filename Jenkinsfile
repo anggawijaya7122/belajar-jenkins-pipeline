@@ -6,11 +6,11 @@ pipeline {
         WEB = "https://aboutmeanggawijaya.blogspot.com"
         APP = credentials("angga_rahasia")
     }
-    triggers {
-        // cron("*/5 * * * *")
-        // pollSCM("*/5 * * * *")
-        // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
-    }
+    // triggers {
+    //     // cron("*/5 * * * *")
+    //     // pollSCM("*/5 * * * *")
+    //     // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
+    // }
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
