@@ -34,6 +34,7 @@ pipeline {
                     writeJSON(file: "data.json", json: data)
                 }
                 echo("Start Test")
+                sh("chmod +x ./mvnw")
                 sh("./mvnw test")
                 echo("Finish Test")
             }
