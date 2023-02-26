@@ -37,21 +37,28 @@ pipeline {
                 echo("Secret: ${params.SECRET}")
             }
         }
-        stage("Preparation") {
-            agent {
-                node {
-                    label "linux && java11"
-                }
-            }
-            stages {
+        stage("Preparation") {\      
+            parallel {
                 stage("Prepare Java") {
+                    agent {
+                        node {
+                        label "linux && java11"
+                    }
+                }
                     steps {
                         echo("Prepare Java")
+                        sleep(5)
                     }
                 }
                 stage("Prepare Maven") {
+                    agent {
+                        node {
+                        label "linux && java11"
+                    }
+                }
                     steps {
                         echo("Prepare maven")
+                        sleep(5)
                     }
                 }
             }
