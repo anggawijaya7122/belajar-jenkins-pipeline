@@ -99,7 +99,7 @@ pipeline {
                 ok "Yes, of course."
                 submitter "admin,angga"
                 parameters {
-                    choice(name: 'TARGET ENV', choices:['DEV','QA','PROD'],description:'We will deploy to?')
+                    choice(name: 'TARGET_ENV', choices:['DEV','QA','PROD'],description:'Which environment?')
                 }
             }
             agent {
