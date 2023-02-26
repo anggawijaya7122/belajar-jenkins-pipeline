@@ -6,6 +6,10 @@ pipeline {
         WEB = "https://aboutmeanggawijaya.blogspot.com"
         APP = credentials("angga_rahasia")
     }
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'MINUTES')
+    }
     stages {
         stage("Prepare") {
             agent {
@@ -16,7 +20,7 @@ pipeline {
             steps {
                 echo("App User : ${APP_USR}")
                 echo("App Password : ${APP_PSW}")
-                sh("echo App Password with kutip satu : ${APP_PSW} > 'rahasia.txt'")
+                sh('echo "App Password with kutip satu : $APP_PSW" > "rahasia.txt"')
                 echo("Author : ${AUTHOR}")
                 echo("Email Author : ${EMAIL}")
                 echo("Website Author : ${WEB}")
