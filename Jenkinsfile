@@ -37,7 +37,7 @@ pipeline {
                 echo("Secret: ${params.SECRET}")
             }
         }
-        stage("Preparation") {\      
+        stage("Preparation") {
             parallel {
                 stage("Prepare Java") {
                     agent {
