@@ -7,9 +7,9 @@ pipeline {
         APP = credentials("angga_rahasia")
     }
     triggers {
-        cron("*/5 * * * *")
-        pollSCM("*/5 * * * *")
-        upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
+        // cron("*/5 * * * *")
+        // pollSCM("*/5 * * * *")
+        // upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
     }
     options {
         disableConcurrentBuilds()
