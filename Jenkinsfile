@@ -37,6 +37,25 @@ pipeline {
                 echo("Secret: ${params.SECRET}")
             }
         }
+        stage("Preparation") {
+            agent {
+                node {
+                    label "linux && java11"
+                }
+            }
+            stages {
+                stage("Prepare Java") {
+                    steps {
+                        echo("Prepare Java")
+                    }
+                }
+                stage("Prepare Maven") {
+                    steps {
+                        echo("Prepare maven")
+                    }
+                }
+            }
+        }
         stage("Prepare") {
             agent {
                 node {
@@ -94,21 +113,21 @@ pipeline {
             }
         }
         stage("Deploy") {
-            input {
-                message "Can we deploy ?"
-                ok "Yes, of course."
-                submitter "admin,angga"
-                parameters {
-                    choice(name: 'TARGET_ENV', choices:['DEV','QA','PROD'],description:'Which environment?')
-                }
-            }
+            // input {
+            //     message "Can we deploy ?"
+            //     ok "Yes, of course."
+            //     submitter "admin,angga"
+            //     parameters {
+            //         choice(name: 'TARGET_ENV', choices:['DEV','QA','PROD'],description:'Which environment?')
+            //     }
+            // }
             agent {
                 node {
                     label "linux && java11"
                 }
             }
             steps {
-                echo "Deploy to ${TARGET_ENV}"
+                // echo "Deploy to ${TARGET_ENV}"
                 echo("Hello Deploy 1")
                 sleep(5)
                 echo("Hello Deploy 2")
