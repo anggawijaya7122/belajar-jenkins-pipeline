@@ -6,6 +6,11 @@ pipeline {
         WEB = "https://aboutmeanggawijaya.blogspot.com"
         APP = credentials("angga_rahasia")
     }
+    triggers {
+        cron("*/5 * * * *")
+        pollSCM("*/5 * * * *")
+        upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
+    }
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
@@ -89,12 +94,21 @@ pipeline {
             }
         }
         stage("Deploy") {
+            input {
+                message "Can we deploy ?"
+                ok "Yes, of course."
+                submitter "admin,angga"
+                parameters {
+                    choice(name: 'TARGET ENV', choices:['DEV','QA','PROD'],description:'We will deploy to?')
+                }
+            }
             agent {
                 node {
                     label "linux && java11"
                 }
             }
             steps {
+                echo "Deploy to ${TARGET_ENV}"
                 echo("Hello Deploy 1")
                 sleep(5)
                 echo("Hello Deploy 2")
