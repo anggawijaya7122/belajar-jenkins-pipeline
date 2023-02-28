@@ -37,6 +37,32 @@ pipeline {
                 echo("Secret: ${params.SECRET}")
             }
         }
+        stage("OS Setup") {
+            matrix {
+                axes {
+                    axis {
+                        name "OS"
+                        value "linux", "windows", "mac"
+                    }
+                    axis {
+                        name "ARC"
+                        value "32", "64"
+                    }
+                }
+            }
+        }
+        stages {
+            stage("OS Setup") {
+                agent {
+                    node {
+                        label "linux && java11"
+                    }
+                }
+                steps {
+                    echo("Setup ${OS} ${ARC}")
+                }
+            }
+        }
         stage("Preparation") {
             parallel {
                 stage("Prepare Java") {
