@@ -42,22 +42,22 @@ pipeline {
                 axes {
                     axis {
                         name "OS"
-                        value "linux", "windows", "mac"
+                        values "linux", "windows", "mac"
                     }
                     axis {
                         name "ARC"
-                        value "32", "64"
+                        values "32", "64"
                     }
                 }
                 excludes {
                     exclude {
                         axis {
                             name "OS"
-                            value "MAC"
+                            values "MAC"
                         }
                         axis {
                             name "ARC"
-                            value "32"
+                            values "32"
                         }
                     }
                 }
