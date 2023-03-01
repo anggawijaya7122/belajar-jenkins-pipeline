@@ -4,7 +4,6 @@ pipeline {
         AUTHOR = "Angga Wijaya"
         EMAIL = "anggawijaya7122@gmail.com"
         WEB = "https://aboutmeanggawijaya.blogspot.com"
-        APP = credentials("angga_rahasia")
     }
     // triggers {
     //     // cron("*/5 * * * *")
@@ -64,6 +63,9 @@ pipeline {
             }
         }
         stage("Prepare") {
+            environment {
+                APP = credentials("angga_rahasia")
+            }
             agent {
                 node {
                     label "linux && java11"
